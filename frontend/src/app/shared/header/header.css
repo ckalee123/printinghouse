@@ -1,0 +1,11 @@
+.ph-navbar {
+  background: var(--ph-primary);
+}
+.ph-navbar .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+}
+.ph-navbar .nav-link.active,
+.ph-navbar .nav-link:hover {
+  color: #fff;
+  font-weight: 600;
+}

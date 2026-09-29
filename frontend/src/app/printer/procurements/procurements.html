@@ -1,0 +1,58 @@
+<h1 class="ph-page-title">Licitacije</h1>
+
+<h2 class="h5 mb-3">Otvorene javne nabavke</h2>
+@if (!open.length) {
+  <p class="ph-empty-state">Trenutno nema otvorenih javnih nabavki.</p>
+}
+@for (p of open; track p._id) {
+  <div class="ph-card">
+    <div class="d-flex justify-content-between">
+      <p class="mb-1"><strong>ID:</strong> {{ p._id.slice(-6) }}</p>
+      <p class="mb-1">Preostalo: {{ formatRemaining(p) }}</p>
+    </div>
+
+    @if (alreadyBid(p)) {
+      <p class="text-success mb-0">Ponuda je već poslata za ovu nabavku.</p>
+    } @else {
+      <table class="table table-sm">
+        <thead><tr><th>Traženo</th><th>Vaš proizvod</th><th>Cena/kom</th></tr></thead>
+        <tbody>
+          @for (item of p.items; track item.naziv) {
+            <tr>
+              <td>{{ item.naziv }} ({{ item.kolicina }} kom)</td>
+              <td>
+                <select class="form-select form-select-sm" [(ngModel)]="drafts[p._id][item.naziv].productId" [name]="'prod'+p._id+item.naziv">
+                  <option value="" disabled>Izaberite proizvod</option>
+                  @for (mp of myProducts; track mp.id) {
+                    <option [value]="mp.id">{{ mp.naziv }} (na stanju: {{ mp.kolicinaNaLageru }})</option>
+                  }
+                </select>
+              </td>
+              <td style="max-width:110px;">
+                <input type="number" class="form-control form-control-sm" [(ngModel)]="drafts[p._id][item.naziv].cenaPoKomadu" [name]="'cena'+p._id+item.naziv" min="0" />
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      @if (errorMessages[p._id]) {
+        <p class="ph-error-text">{{ errorMessages[p._id] }}</p>
+      }
+      @if (successMessages[p._id]) {
+        <p class="text-success">{{ successMessages[p._id] }}</p>
+      }
+      <button type="button" class="btn ph-btn-primary btn-sm" (click)="submitBid(p)">Pošalji ponudu</button>
+    }
+  </div>
+}
+
+<h2 class="h5 mt-4 mb-3">Zatvorene javne nabavke — izveštaji</h2>
+@if (!closed.length) {
+  <p class="ph-empty-state">Nema zatvorenih javnih nabavki u kojima ste učestvovali.</p>
+}
+@for (p of closed; track p._id) {
+  <div class="ph-card d-flex justify-content-between align-items-center">
+    <span>ID: {{ p._id.slice(-6) }} · {{ p.winningPrinterId ? "dodeljena" : "bez pobednika" }}</span>
+    <button type="button" class="btn btn-outline-secondary btn-sm" (click)="downloadReport(p)">Preuzmi PDF izveštaj</button>
+  </div>
+}

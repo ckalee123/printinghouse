@@ -1,0 +1,34 @@
+<h1 class="ph-page-title">Kategorije proizvoda</h1>
+
+<div class="ph-card">
+  <div class="input-group" style="max-width:400px;">
+    <input type="text" class="form-control" placeholder="Nova kategorija..." [(ngModel)]="newCategoryName" name="newCategoryName" />
+    <button type="button" class="btn ph-btn-primary" (click)="addCategory()">Dodaj kategoriju</button>
+  </div>
+</div>
+
+@for (c of categories; track c._id) {
+  <div class="ph-card">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h2 class="h6 mb-0">{{ c.name }}</h2>
+      <button type="button" class="btn btn-outline-danger btn-sm" (click)="removeCategory(c._id)">Obriši kategoriju</button>
+    </div>
+
+    <ul class="list-group mb-2">
+      @for (s of c.subcategories; track s._id) {
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ s.name }}
+          <button type="button" class="btn btn-outline-danger btn-sm" (click)="removeSubcategory(c, s._id)">Ukloni</button>
+        </li>
+      }
+      @if (!c.subcategories.length) {
+        <li class="list-group-item ph-muted">Nema potkategorija</li>
+      }
+    </ul>
+
+    <div class="input-group input-group-sm" style="max-width:350px;">
+      <input type="text" class="form-control" placeholder="Nova potkategorija..." [(ngModel)]="newSubcategoryDrafts[c._id]" [name]="'sub'+c._id" />
+      <button type="button" class="btn btn-outline-primary" (click)="addSubcategory(c)">Dodaj</button>
+    </div>
+  </div>
+}

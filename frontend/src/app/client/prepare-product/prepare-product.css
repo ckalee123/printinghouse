@@ -1,0 +1,27 @@
+.ph-preview-wrap {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.ph-preview-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  font-weight: 600;
+  font-size: 1.1rem;
+  max-width: 80%;
+  text-align: center;
+  pointer-events: none;
+}
+.ph-preview-overlay-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 40%;
+  max-height: 40%;
+  pointer-events: none;
+}

@@ -1,0 +1,37 @@
+<h1 class="ph-page-title">Ažuriranje količina</h1>
+
+@if (loading) {
+  <p class="ph-muted">Učitavanje...</p>
+} @else if (!products.length) {
+  <p class="ph-empty-state">Nemate proizvoda.</p>
+} @else {
+  <div class="table-responsive">
+    <table class="table ph-table align-middle">
+      <thead>
+        <tr>
+          <th>Proizvod</th>
+          <th>Kategorija</th>
+          <th>Trenutna količina</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (p of products; track p.id) {
+          <tr>
+            <td>{{ p.naziv }}</td>
+            <td>{{ p.kategorija }} / {{ p.potkategorija }}</td>
+            <td style="max-width:140px;">
+              <input type="number" class="form-control form-control-sm" [(ngModel)]="p.kolicinaNaLageru" [name]="'q'+p.id" min="0" />
+            </td>
+            <td>
+              <button type="button" class="btn ph-btn-primary btn-sm" (click)="save(p)">Sačuvaj</button>
+              @if (savedIds.has(p.id)) {
+                <span class="text-success ms-2">✓</span>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

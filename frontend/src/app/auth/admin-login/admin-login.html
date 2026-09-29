@@ -1,0 +1,22 @@
+<div class="ph-card mx-auto" style="max-width: 400px;">
+  <h1 class="ph-page-title">Administratorska prijava</h1>
+
+  <form (ngSubmit)="submit()" #form="ngForm">
+    <div class="mb-3">
+      <label class="form-label">Korisničko ime</label>
+      <input type="text" class="form-control" name="username" [(ngModel)]="username" required />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Lozinka</label>
+      <input type="password" class="form-control" name="password" [(ngModel)]="password" required />
+    </div>
+
+    @if (errorMessage) {
+      <p class="ph-error-text">{{ errorMessage }}</p>
+    }
+
+    <button type="submit" class="btn ph-btn-primary w-100" [disabled]="!form.valid || loading">
+      {{ loading ? "Prijavljivanje..." : "Prijavi se" }}
+    </button>
+  </form>
+</div>

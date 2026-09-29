@@ -1,0 +1,102 @@
+<h1 class="ph-page-title">Moj profil</h1>
+
+<div class="ph-card">
+  <div class="row">
+    <div class="col-md-3 text-center">
+      <img [src]="'/uploads/' + (auth.user()?.profileImage || 'default_profile_image.jpg')" class="rounded-circle mb-2" style="width:120px;height:120px;object-fit:cover;" />
+      <input type="file" class="form-control form-control-sm" accept="image/jpeg,image/png,image/gif" (change)="onFileSelected($event)" />
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Korisničko ime</label>
+          <input type="text" class="form-control" [value]="auth.user()?.username" disabled />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">E-mejl</label>
+          <input type="email" class="form-control" name="email" [(ngModel)]="email" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Ime</label>
+          <input type="text" class="form-control" name="firstName" [(ngModel)]="firstName" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Prezime</label>
+          <input type="text" class="form-control" name="lastName" [(ngModel)]="lastName" />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Telefon</label>
+        <input type="tel" class="form-control" name="phone" [(ngModel)]="phone" />
+      </div>
+
+      @if (auth.user()?.isCompany) {
+        <div class="mb-3">
+          <label class="form-label">Naziv institucije</label>
+          <input type="text" class="form-control" name="companyName" [(ngModel)]="companyName" />
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Adresa</label>
+            <input type="text" class="form-control" name="address" [(ngModel)]="address" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Grad</label>
+            <input type="text" class="form-control" name="city" [(ngModel)]="city" />
+          </div>
+        </div>
+      }
+
+      <button type="button" class="btn ph-btn-primary" (click)="save()" [disabled]="saving">
+        {{ saving ? "Čuvanje..." : "Sačuvaj izmene" }}
+      </button>
+      @if (saveMessage) {
+        <span class="ms-2">{{ saveMessage }}</span>
+      }
+    </div>
+  </div>
+</div>
+
+<h2 class="h5 mt-4 mb-3">Moje narudžbine</h2>
+@if (!orders.length) {
+  <p class="ph-empty-state">Nemate narudžbina.</p>
+} @else {
+  <div class="table-responsive">
+    <table class="table ph-table align-middle">
+      <thead>
+        <tr>
+          <th>ID fakture</th>
+          <th class="sortable" (click)="sortBy('nazivStamparije')">Štamparija</th>
+          <th>Grad</th>
+          <th>Proizvodi</th>
+          <th class="sortable" (click)="sortBy('ukupanIznos')">Iznos</th>
+          <th class="sortable" (click)="sortBy('status')">Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (o of sortedOrders; track o._id) {
+          <tr>
+            <td>{{ o._id.slice(-6) }}</td>
+            <td>{{ o.nazivStamparije }}</td>
+            <td>{{ o.grad }}</td>
+            <td>
+              @for (it of o.items; track it.productId) {
+                <div>{{ it.naziv }} ({{ it.kolicina }})</div>
+              }
+            </td>
+            <td>{{ o.ukupanIznos }} din</td>
+            <td><span class="ph-badge-status" [class]="'ph-badge-' + o.status">{{ o.status }}</span></td>
+            <td>
+              @if (o.status === 'naruceno') {
+                <button type="button" class="btn btn-outline-danger btn-sm" (click)="cancelOrder(o._id)">Otkaži</button>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

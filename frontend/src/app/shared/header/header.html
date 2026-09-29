@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark ph-navbar sticky-top">
+  <div class="container-fluid" style="max-width:1200px;">
+    <a class="navbar-brand fw-semibold" routerLink="/">🖨️ Printing House</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#phNav" aria-label="Meni">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="phNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Početna</a></li>
+
+        @if (!auth.isLoggedIn()) {
+          <li class="nav-item"><a class="nav-link" routerLink="/login" routerLinkActive="active">Prijava</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/registracija/klijent" routerLinkActive="active">Registracija klijenta</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/registracija/stampar" routerLinkActive="active">Registracija štamparije</a></li>
+        }
+
+        @if (auth.role() === 'client') {
+          <li class="nav-item"><a class="nav-link" routerLink="/pretraga" routerLinkActive="active">Pretraga proizvoda</a></li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/klijent/korpa" routerLinkActive="active">
+              E-korpa @if (cart.count() > 0) { <span class="badge ph-btn-accent">{{ cart.count() }}</span> }
+            </a>
+          </li>
+          <li class="nav-item"><a class="nav-link" routerLink="/klijent/arhiva" routerLinkActive="active">Arhiva proizvoda</a></li>
+          @if (auth.user()?.isCompany) {
+            <li class="nav-item"><a class="nav-link" routerLink="/klijent/javne-nabavke" routerLinkActive="active">Javne nabavke</a></li>
+          }
+          <li class="nav-item"><a class="nav-link" routerLink="/klijent/profil" routerLinkActive="active">Profil</a></li>
+        }
+
+        @if (auth.role() === 'printer') {
+          <li class="nav-item"><a class="nav-link" routerLink="/stampar/proizvodi" routerLinkActive="active">Proizvodi i usluge</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/stampar/kolicine" routerLinkActive="active">Ažuriranje količina</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/stampar/uvoz" routerLinkActive="active">Uvoz iz JSON</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/stampar/narudzbine" routerLinkActive="active">Naručeni proizvodi</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/stampar/licitacije" routerLinkActive="active">Licitacije</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/stampar/profil" routerLinkActive="active">Profil</a></li>
+        }
+
+        @if (auth.role() === 'admin') {
+          <li class="nav-item"><a class="nav-link" routerLink="/admin/korisnici" routerLinkActive="active">Korisnici</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/admin/zahtevi" routerLinkActive="active">Zahtevi za registraciju</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/admin/kategorije" routerLinkActive="active">Kategorije</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/admin/statistike" routerLinkActive="active">Statistike</a></li>
+        }
+      </ul>
+
+      @if (auth.isLoggedIn()) {
+        <span class="navbar-text text-white-50 me-3 d-none d-lg-inline">{{ auth.user()?.username }}</span>
+        <button type="button" class="btn btn-outline-light btn-sm" (click)="logout()">Izloguj se</button>
+      }
+    </div>
+  </div>
+</nav>

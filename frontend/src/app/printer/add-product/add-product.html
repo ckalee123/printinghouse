@@ -1,0 +1,93 @@
+<h1 class="ph-page-title">{{ editId ? "Izmena proizvoda" : "Novi proizvod" }}</h1>
+
+<div class="ph-card">
+  <form (ngSubmit)="submit()" #form="ngForm">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Šifra</label>
+        <input type="text" class="form-control" name="sifra" [(ngModel)]="sifra" />
+      </div>
+      <div class="col-md-8 mb-3">
+        <label class="form-label">Naziv *</label>
+        <input type="text" class="form-control" name="naziv" [(ngModel)]="naziv" required />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Opis</label>
+      <textarea class="form-control" name="opis" [(ngModel)]="opis" rows="2"></textarea>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Kategorija *</label>
+        <select class="form-select" name="kategorija" [(ngModel)]="kategorija" required>
+          <option value="" disabled>Izaberite kategoriju</option>
+          @for (c of categories; track c._id) {
+            <option [value]="c.name">{{ c.name }}</option>
+          }
+        </select>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Potkategorija *</label>
+        <select class="form-select" name="potkategorija" [(ngModel)]="potkategorija" required>
+          <option value="" disabled>Izaberite potkategoriju</option>
+          @for (s of subcategories; track s._id) {
+            <option [value]="s.name">{{ s.name }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Jedinična cena (din) *</label>
+        <input type="number" class="form-control" name="jedinicnaCena" [(ngModel)]="jedinicnaCena" required min="0" />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Količina na stanju</label>
+        <input type="number" class="form-control" name="kolicinaNaLageru" [(ngModel)]="kolicinaNaLageru" min="0" />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Dostupne boje (odvojene zarezom)</label>
+        <input type="text" class="form-control" name="dostupneBojeText" [(ngModel)]="dostupneBojeText" />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label d-flex justify-content-between">
+        Usluge štampe
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="addUsluga()">+ Dodaj uslugu</button>
+      </label>
+      @for (u of usluge; track $index) {
+        <div class="row g-2 align-items-center mb-2">
+          <div class="col-md-4"><input type="text" class="form-control form-control-sm" placeholder="Tip štampe" [(ngModel)]="u.tipStampe" [name]="'tip'+$index" /></div>
+          <div class="col-md-2"><input type="number" class="form-control form-control-sm" placeholder="Cena" [(ngModel)]="u.dodatnaCenaPoKomadu" [name]="'cena'+$index" /></div>
+          <div class="col-md-2"><input type="number" class="form-control form-control-sm" placeholder="Max šir. mm" [(ngModel)]="u.maxSirinaMm" [name]="'sir'+$index" /></div>
+          <div class="col-md-2"><input type="number" class="form-control form-control-sm" placeholder="Max vis. mm" [(ngModel)]="u.maxVisinaMm" [name]="'vis'+$index" /></div>
+          <div class="col-md-2"><button type="button" class="btn btn-outline-danger btn-sm" (click)="removeUsluga($index)">Ukloni</button></div>
+        </div>
+      }
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Glavna slika</label>
+        <input type="file" class="form-control" accept="image/jpeg,image/png,image/gif" (change)="onSlikaSelected($event)" />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Dodatne slike (do 3)</label>
+        <input type="file" class="form-control" accept="image/jpeg,image/png,image/gif" multiple (change)="onDodatneSlikeSelected($event)" />
+      </div>
+    </div>
+
+    @if (errorMessage) {
+      <p class="ph-error-text">{{ errorMessage }}</p>
+    }
+    @if (successMessage) {
+      <p class="text-success">{{ successMessage }}</p>
+    }
+
+    <button type="submit" class="btn ph-btn-primary" [disabled]="saving">{{ saving ? "Čuvanje..." : "Sačuvaj proizvod" }}</button>
+  </form>
+</div>

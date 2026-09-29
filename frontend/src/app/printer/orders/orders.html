@@ -1,0 +1,42 @@
+<h1 class="ph-page-title">Naručeni proizvodi</h1>
+
+@if (loading) {
+  <p class="ph-muted">Učitavanje...</p>
+} @else if (!orders.length) {
+  <p class="ph-empty-state">Nema narudžbina.</p>
+} @else {
+  <div class="table-responsive">
+    <table class="table ph-table align-middle">
+      <thead>
+        <tr>
+          <th>ID fakture</th>
+          <th>Proizvodi</th>
+          <th>Iznos</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (o of orders; track o._id) {
+          <tr>
+            <td>{{ o._id.slice(-6) }}</td>
+            <td>
+              @for (it of o.items; track it.productId) {
+                <div>{{ it.naziv }} ({{ it.kolicina }})</div>
+              }
+            </td>
+            <td>{{ o.ukupanIznos }} din</td>
+            <td><span class="ph-badge-status" [class]="'ph-badge-' + o.status">{{ o.status }}</span></td>
+            <td>
+              @if (nextStatus(o.status)) {
+                <button type="button" class="btn ph-btn-primary btn-sm" (click)="advance(o)">
+                  Prebaci u "{{ nextStatus(o.status) }}"
+                </button>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

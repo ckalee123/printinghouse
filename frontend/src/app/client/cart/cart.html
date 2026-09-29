@@ -1,0 +1,54 @@
+<h1 class="ph-page-title">E-korpa</h1>
+
+@if (!cart.items().length) {
+  <p class="ph-empty-state">Vaša korpa je prazna. <a routerLink="/pretraga">Pretražite proizvode</a>.</p>
+} @else {
+  @for (group of cart.groupedByPrinter(); track group.printerId) {
+    <div class="ph-card">
+      <h2 class="h5">{{ group.nazivStamparije }}</h2>
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th>Proizvod</th>
+              <th>Boja</th>
+              <th>Usluge</th>
+              <th>Količina</th>
+              <th>Cena/kom</th>
+              <th>Ukupno</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of group.items; track item.lineId) {
+              <tr>
+                <td>{{ item.naziv }}</td>
+                <td>{{ item.boja }}</td>
+                <td>{{ item.uslugeNazivi.join(', ') || '-' }}</td>
+                <td>{{ item.kolicina }}</td>
+                <td>{{ item.cenaPoKomadu }} din</td>
+                <td>{{ item.cenaPoKomadu * item.kolicina }} din</td>
+                <td><button type="button" class="btn btn-outline-danger btn-sm" (click)="cart.remove(item.lineId)">Ukloni</button></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="text-end mb-0"><strong>Ukupno za ovu štampariju: {{ group.ukupno }} din</strong></p>
+    </div>
+  }
+
+  <div class="ph-card d-flex justify-content-between align-items-center">
+    <h2 class="h5 mb-0">Ukupan iznos: {{ cart.grandTotal() }} din</h2>
+    <button type="button" class="btn ph-btn-primary" (click)="confirm()" [disabled]="loading">
+      {{ loading ? "Slanje..." : "POTVRDI" }}
+    </button>
+  </div>
+
+  @if (errorMessage) {
+    <p class="ph-error-text">{{ errorMessage }}</p>
+  }
+  @if (successMessage) {
+    <p class="text-success">{{ successMessage }}</p>
+  }
+}

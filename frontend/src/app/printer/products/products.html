@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="ph-page-title mb-0">Proizvodi i usluge</h1>
+  <a routerLink="/stampar/proizvodi/dodaj" class="btn ph-btn-primary">+ Dodaj proizvod</a>
+</div>
+
+@if (loading) {
+  <p class="ph-muted">Učitavanje...</p>
+} @else if (!products.length) {
+  <p class="ph-empty-state">Još uvek nemate dodatih proizvoda.</p>
+} @else {
+  <div class="ph-grid-cards">
+    @for (p of products; track p.id) {
+      <div class="ph-card">
+        <img [src]="'/uploads/' + (p.slikaUrl || 'default_profile_image.jpg')" class="w-100 mb-2" style="height:130px;object-fit:cover;border-radius:0.4rem;" />
+        <h3 class="h6">{{ p.naziv }}</h3>
+        <p class="ph-muted mb-1" style="font-size:0.85rem;">{{ p.kategorija }} / {{ p.potkategorija }}</p>
+        <p class="mb-1">{{ p.jedinicnaCena }} din/kom · na stanju: {{ p.kolicinaNaLageru }}</p>
+        <p class="mb-2" style="font-size:0.85rem;">👍 {{ p.likeCount }} &nbsp; 👎 {{ p.dislikeCount }}</p>
+        <a [routerLink]="['/stampar/proizvodi/izmeni', p.id]" class="btn btn-outline-secondary btn-sm w-100">Izmeni</a>
+      </div>
+    }
+  </div>
+}

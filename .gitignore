@@ -1,0 +1,19 @@
+# Dependencies and build output
+node_modules/
+dist/
+.angular/
+
+# Secrets (passwords, JWT key) - never upload
+.env
+
+# Editor / tool folders
+.vscode/
+.idea/
+.claude/
+
+# Local notes
+Anatomija-Printing-House-a.html
+
+# System files
+.DS_Store
+Thumbs.db

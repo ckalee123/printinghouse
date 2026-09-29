@@ -1,0 +1,211 @@
+[
+  {
+    "_id": {
+      "$oid": "6a8466fa706371a3f9880d54"
+    },
+    "username": "admin",
+    "passwordHash": "$2b$10$VnV/LmlyN.ffqSPhfxm/L.Tj.TjMuXd7HSbBYcD8buER83oI/nWbC",
+    "email": "admin@printinghouse.local",
+    "firstName": "Admin",
+    "lastName": "Administrator",
+    "phone": "0600000000",
+    "profileImage": "default_profile_image.jpg",
+    "status": "approved",
+    "role": "admin",
+    "createdAt": {
+      "$date": "2026-08-18T14:06:50.435Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-10T21:41:04.252Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a8466fa706371a3f9880d55"
+    },
+    "username": "stampar1",
+    "passwordHash": "$2a$10$AYR0TvKKQRSEsFHvmuaiLeLtG7Tziwob1f/0ZEyGXSeSsWBHq2cVW",
+    "email": "kontakt@copystudio.rs",
+    "firstName": "Nikola",
+    "lastName": "Ilić",
+    "phone": "0641112233",
+    "profileImage": "default_profile_image.jpg",
+    "status": "approved",
+    "role": "printer",
+    "companyName": "Copy Studio Kumanovska",
+    "address": "Kumanovska 4",
+    "city": "Beograd",
+    "registrationNumber": "20123456",
+    "pib": "108123456",
+    "createdAt": {
+      "$date": "2026-08-18T14:06:50.435Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-18T14:06:50.435Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a8466fa706371a3f9880d57"
+    },
+    "username": "stampar3",
+    "passwordHash": "$2a$10$rTAvjtERGdy7sUl7GHhGhu4viUkwiyBaFt3O.QPEYydPo/gHWR33.",
+    "email": "kontakt@grafikaplus.rs",
+    "firstName": "Miloš",
+    "lastName": "Stanković",
+    "phone": "0643334455",
+    "profileImage": "default_profile_image.jpg",
+    "status": "approved",
+    "role": "printer",
+    "companyName": "Grafika Plus",
+    "address": "Obilićev venac 2",
+    "city": "Niš",
+    "registrationNumber": "20345678",
+    "pib": "108345678",
+    "createdAt": {
+      "$date": "2026-08-18T14:06:50.435Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-18T14:06:50.435Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a8466fa706371a3f9880d58"
+    },
+    "username": "klijent1",
+    "passwordHash": "$2a$10$VVCDnXYKLHYuZAQcK9Qn0uFkQ6Xi1YwsBS7uETigxUz.Gugqtrmli",
+    "email": "marko.petrovic@example.com",
+    "firstName": "Marko",
+    "lastName": "Petrović",
+    "phone": "0651234567",
+    "profileImage": "default_profile_image.jpg",
+    "status": "approved",
+    "role": "client",
+    "isCompany": false,
+    "createdAt": {
+      "$date": "2026-08-18T14:06:50.435Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-18T14:06:50.435Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a8466fa706371a3f9880d59"
+    },
+    "username": "klijent2",
+    "passwordHash": "$2a$10$l662St2XGwRvpKy68l1MWuHoKPxA6zQX0OO2Ccxet6omOkE34joQW",
+    "email": "ana.jovanovic@example.com",
+    "firstName": "Ana",
+    "lastName": "Jovanović",
+    "phone": "0652345678",
+    "profileImage": "default_profile_image.jpg",
+    "status": "approved",
+    "role": "client",
+    "isCompany": false,
+    "createdAt": {
+      "$date": "2026-08-18T14:06:50.435Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-18T14:06:50.435Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a8466fa706371a3f9880d5a"
+    },
+    "username": "firma1",
+    "passwordHash": "$2a$10$eFqMuRFYNtPxDavlGhaz3OM4NmOTNnGM/JQPXgOO0Wv/SmM6rV8GS",
+    "email": "nabavka@fondacija-primer.rs",
+    "firstName": "Petar",
+    "lastName": "Nikolić",
+    "phone": "0653456789",
+    "profileImage": "default_profile_image.jpg",
+    "status": "approved",
+    "role": "client",
+    "isCompany": true,
+    "companyName": "Fondacija Primer",
+    "address": "Knez Mihailova 5",
+    "city": "Beograd",
+    "registrationNumber": "17456789",
+    "pib": "104456789",
+    "createdAt": {
+      "$date": "2026-08-18T14:06:50.435Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-18T14:06:50.435Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a8466fa706371a3f9880d5b"
+    },
+    "username": "novaregistracija",
+    "passwordHash": "$2a$10$VVCDnXYKLHYuZAQcK9Qn0uFkQ6Xi1YwsBS7uETigxUz.Gugqtrmli",
+    "email": "nova.registracija@example.com",
+    "firstName": "Jelena",
+    "lastName": "Simić",
+    "phone": "0654567890",
+    "profileImage": "default_profile_image.jpg",
+    "status": "approved",
+    "role": "client",
+    "isCompany": false,
+    "createdAt": {
+      "$date": "2026-08-18T14:06:50.435Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-17T23:21:05.359Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a8466fa706371a3f9880d5c"
+    },
+    "username": "novastamparija",
+    "passwordHash": "$2a$10$AYR0TvKKQRSEsFHvmuaiLeLtG7Tziwob1f/0ZEyGXSeSsWBHq2cVW",
+    "email": "nova.stamparija@example.com",
+    "firstName": "Dušan",
+    "lastName": "Popović",
+    "phone": "0655678901",
+    "profileImage": "default_profile_image.jpg",
+    "status": "pending",
+    "role": "printer",
+    "companyName": "Nova Štamparija DOO",
+    "address": "Cara Dušana 1",
+    "city": "Kragujevac",
+    "registrationNumber": "20456789",
+    "pib": "108456789",
+    "createdAt": {
+      "$date": "2026-08-18T14:06:50.435Z"
+    },
+    "updatedAt": {
+      "$date": "2026-08-18T14:06:50.435Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a8466fa706371a3f9880d56"
+    },
+    "username": "stampar2",
+    "passwordHash": "$2a$10$tWniq5EGLaU1mbcAzwWrBOUTKhJsoBlX8Udi9c9PANZsCkptesqbi",
+    "email": "kontakt@printmax.rs",
+    "firstName": "Jovana",
+    "lastName": "Radić",
+    "phone": "0642223344",
+    "profileImage": "default_profile_image.jpg",
+    "status": "approved",
+    "role": "printer",
+    "companyName": "PrintMax Novi Sad",
+    "address": "Bulevar oslobođenja 10",
+    "city": "Novi Sad",
+    "registrationNumber": "20234567",
+    "pib": "108234567",
+    "createdAt": {
+      "$date": "2026-09-17T23:26:09.732Z"
+    },
+    "updatedAt": {
+      "$date": "2026-09-17T23:26:09.732Z"
+    }
+  }
+]

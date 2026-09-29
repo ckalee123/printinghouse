@@ -1,0 +1,58 @@
+[{
+	"_id": {
+		"$oid": "6a8466fa706371a3f9880d64"
+	},
+	"productId": {
+		"$oid": "6a8466fa706371a3f9880d5d"
+	},
+	"userId": {
+		"$oid": "6a8466fa706371a3f9880d58"
+	},
+	"username": "klijent1",
+	"text": "Odličan kvalitet materijala, preporučujem!",
+	"createdAt": {
+		"$date": "2026-07-29T14:06:50.497Z"
+	},
+	"updatedAt": {
+		"$date": "2026-07-29T14:06:50.497Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a8466fa706371a3f9880d65"
+	},
+	"productId": {
+		"$oid": "6a8466fa706371a3f9880d5d"
+	},
+	"userId": {
+		"$oid": "6a8466fa706371a3f9880d59"
+	},
+	"username": "klijent2",
+	"text": "Brza isporuka, štampa lepo drži boju.",
+	"createdAt": {
+		"$date": "2026-08-13T14:06:50.497Z"
+	},
+	"updatedAt": {
+		"$date": "2026-08-13T14:06:50.497Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a8466fa706371a3f9880d66"
+	},
+	"productId": {
+		"$oid": "6a8466fa706371a3f9880d5e"
+	},
+	"userId": {
+		"$oid": "6a8466fa706371a3f9880d58"
+	},
+	"username": "klijent1",
+	"text": "Šolja stigla neoštećena, štampa oštra.",
+	"createdAt": {
+		"$date": "2026-08-03T14:06:50.497Z"
+	},
+	"updatedAt": {
+		"$date": "2026-08-03T14:06:50.497Z"
+	}
+}]
+

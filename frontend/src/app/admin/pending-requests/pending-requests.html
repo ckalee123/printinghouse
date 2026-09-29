@@ -1,0 +1,37 @@
+<h1 class="ph-page-title">Zahtevi za registraciju</h1>
+
+@if (loading) {
+  <p class="ph-muted">Učitavanje...</p>
+} @else if (!users.length) {
+  <p class="ph-empty-state">Nema neodobrenih zahteva.</p>
+} @else {
+  <div class="table-responsive">
+    <table class="table ph-table align-middle">
+      <thead>
+        <tr>
+          <th>Korisničko ime</th>
+          <th>Tip</th>
+          <th>Ime i prezime / institucija</th>
+          <th>E-mejl</th>
+          <th>Telefon</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (u of users; track u.id) {
+          <tr>
+            <td>{{ u.username }}</td>
+            <td>{{ u.role }} @if (u.isCompany) { (pravno lice) }</td>
+            <td>{{ u.firstName }} {{ u.lastName }} @if (u.companyName) { <br /><small class="ph-muted">{{ u.companyName }}</small> }</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.phone }}</td>
+            <td>
+              <button type="button" class="btn ph-btn-primary btn-sm" (click)="approve(u)">Odobri</button>
+              <button type="button" class="btn btn-outline-danger btn-sm" (click)="reject(u)">Odbij</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

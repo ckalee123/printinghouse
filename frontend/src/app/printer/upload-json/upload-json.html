@@ -1,0 +1,32 @@
+<h1 class="ph-page-title">Uvoz proizvoda iz JSON fajla</h1>
+
+<div class="ph-card">
+  <p class="ph-muted">Izaberite JSON fajl u formatu iz Priloga 1 projektnog zadatka (polje "proizvodi" sa listom proizvoda).</p>
+  <input type="file" class="form-control mb-3" accept="application/json,.json" (change)="onFileSelected($event)" />
+  <button type="button" class="btn ph-btn-primary" (click)="upload()" [disabled]="!selectedFile || uploading">
+    {{ uploading ? "Uvoz..." : "Uvezi proizvode" }}
+  </button>
+
+  @if (message) {
+    <p class="text-success mt-2">{{ message }}</p>
+  }
+  @if (errorMessage) {
+    <p class="ph-error-text mt-2">{{ errorMessage }}</p>
+  }
+</div>
+
+@if (importedProducts.length) {
+  <h2 class="h6">Dodajte slike za uvezene proizvode</h2>
+  <div class="ph-grid-cards">
+    @for (p of importedProducts; track p.id) {
+      <div class="ph-card">
+        <img [src]="'/uploads/' + (p.slikaUrl || 'default_profile_image.jpg')" class="w-100 mb-2" style="height:120px;object-fit:cover;border-radius:0.4rem;" />
+        <h3 class="h6">{{ p.naziv }}</h3>
+        <input type="file" class="form-control form-control-sm" accept="image/jpeg,image/png,image/gif" (change)="onProductImageSelected(p, $event)" />
+        @if (imageSavedIds.has(p.id)) {
+          <small class="text-success">Slika sačuvana ✓</small>
+        }
+      </div>
+    }
+  </div>
+}

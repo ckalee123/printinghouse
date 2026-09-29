@@ -1,0 +1,84 @@
+@if (loading) {
+  <p class="ph-muted">Učitavanje...</p>
+} @else if (!product) {
+  <p class="ph-empty-state">Proizvod nije pronađen.</p>
+} @else {
+  <h1 class="ph-page-title">Priprema proizvoda — {{ product.naziv }}</h1>
+
+  <div class="row">
+    <div class="col-md-5">
+      <div class="ph-card">
+        <div class="ph-preview-wrap">
+          <img [src]="'/uploads/' + (product.slikaUrl || 'default_profile_image.jpg')" class="w-100" style="border-radius:0.4rem;" />
+          @if (customizationType === 'text' && customizationText) {
+            <div class="ph-preview-overlay">{{ customizationText }}</div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="ph-card">
+        <div class="mb-3">
+          <label class="form-label">Boja</label>
+          <select class="form-select" [(ngModel)]="boja" name="boja">
+            @for (b of product.dostupneBoje; track b) {
+              <option [value]="b">{{ b }}</option>
+            }
+          </select>
+        </div>
+
+        @if (product.uslugeStampe.length) {
+          <div class="mb-3">
+            <label class="form-label">Usluge štampe</label>
+            @for (u of product.uslugeStampe; track u.idUsluge) {
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" [id]="u.idUsluge"
+                       [checked]="selectedUslugeIds.includes(u.idUsluge)" (change)="toggleUsluga(u.idUsluge)" />
+                <label class="form-check-label" [for]="u.idUsluge">{{ u.tipStampe }} (+{{ u.dodatnaCenaPoKomadu }} din)</label>
+              </div>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label">Šta štampamo na proizvodu?</label>
+          <div class="btn-group d-block">
+            <div class="form-check form-check-inline">
+              <input type="radio" class="form-check-input" name="ctype" id="ctNone" value="none" [(ngModel)]="customizationType" />
+              <label class="form-check-label" for="ctNone">Ništa</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="radio" class="form-check-input" name="ctype" id="ctText" value="text" [(ngModel)]="customizationType" />
+              <label class="form-check-label" for="ctText">Tekst</label>
+            </div>
+          </div>
+        </div>
+
+        @if (customizationType === 'text') {
+          <div class="mb-3">
+            <label class="form-label">Tekst za štampu</label>
+            <input type="text" class="form-control" [(ngModel)]="customizationText" name="customizationText" maxlength="60" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label">Količina (na stanju: {{ product.kolicinaNaLageru }})</label>
+          <input type="number" class="form-control" [(ngModel)]="kolicina" name="kolicina" min="1" [max]="product.kolicinaNaLageru" />
+        </div>
+
+        <p class="mb-3"><strong>Cena po komadu: {{ cenaPoKomadu }} din</strong></p>
+
+        @if (errorMessage) {
+          <p class="ph-error-text">{{ errorMessage }}</p>
+        }
+
+        <div class="d-flex gap-2">
+          <button type="button" class="btn ph-btn-primary" (click)="addToCart()">DODAJ U KORPU</button>
+          <button type="button" class="btn btn-outline-secondary" (click)="reset()">PONIŠTI</button>
+          <a [routerLink]="['/proizvod', product.id]" class="btn btn-outline-secondary">NAZAD</a>
+        </div>
+      </div>
+    </div>
+  </div>
+}

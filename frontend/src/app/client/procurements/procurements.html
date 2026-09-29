@@ -1,0 +1,38 @@
+<h1 class="ph-page-title">Javne nabavke</h1>
+
+@if (!procurements.length) {
+  <p class="ph-empty-state">Još uvek niste raspisali nijednu javnu nabavku. Dodajte proizvode u <a routerLink="/klijent/korpa">e-korpu</a> i potvrdite.</p>
+} @else {
+  @for (p of procurements; track p._id) {
+    <div class="ph-card">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <p class="mb-1"><strong>ID nabavke:</strong> {{ p._id.slice(-6) }}</p>
+          <p class="mb-1"><strong>Traženi proizvodi:</strong></p>
+          <ul class="mb-1">
+            @for (item of p.items; track item.naziv) {
+              <li>{{ item.naziv }} - {{ item.kolicina }} kom</li>
+            }
+          </ul>
+        </div>
+        <div class="text-end">
+          @if (p.status === 'open') {
+            <span class="ph-badge-status ph-badge-naruceno">otvoreno</span>
+            <p class="ph-muted mt-1 mb-0">Preostalo: {{ formatRemaining(p) }}</p>
+          } @else {
+            <span class="ph-badge-status ph-badge-primljeno">zatvoreno</span>
+          }
+        </div>
+      </div>
+
+      @if (p.status === 'closed') {
+        <hr />
+        @if (p.winningPrinterId) {
+          <p class="text-success mb-0">Nabavka je dodeljena. Detalje potražite u <a routerLink="/klijent/profil">mojim narudžbinama</a>.</p>
+        } @else {
+          <p class="ph-error-text mb-0">Nije bilo prihvatljivih ponuda ({{ p.bids.length }} pristiglih).</p>
+        }
+      }
+    </div>
+  }
+}

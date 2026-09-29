@@ -1,0 +1,72 @@
+[{
+	"_id": {
+		"$oid": "6a8466fa706371a3f9880d6c"
+	},
+	"clientId": {
+		"$oid": "6a8466fa706371a3f9880d5a"
+	},
+	"items": [
+		{
+			"naziv": "Vizit karta 300g mat",
+			"kategorija": "Štampa malih formata",
+			"kolicina": 500
+		}
+	],
+	"deadline": {
+		"$date": "2026-08-11T14:06:50.524Z"
+	},
+	"status": "closed",
+	"bids": [
+		{
+			"printerId": {
+				"$oid": "6a8466fa706371a3f9880d55"
+			},
+			"items": [
+				{
+					"naziv": "Vizit karta 300g mat",
+					"productId": {
+						"$oid": "6a8466fa706371a3f9880d5f"
+					},
+					"cenaPoKomadu": 9,
+					"kolicinaDostupna": 5000
+				}
+			],
+			"ukupnaCena": 4500,
+			"submittedAt": {
+				"$date": "2026-08-11T14:06:50.524Z"
+			}
+		},
+		{
+			"printerId": {
+				"$oid": "6a8466fa706371a3f9880d56"
+			},
+			"items": [
+				{
+					"naziv": "Vizit karta 300g mat",
+					"productId": {
+						"$oid": "6a8466fa706371a3f9880d61"
+					},
+					"cenaPoKomadu": 11,
+					"kolicinaDostupna": 3000
+				}
+			],
+			"ukupnaCena": 5500,
+			"submittedAt": {
+				"$date": "2026-08-11T14:06:50.524Z"
+			}
+		}
+	],
+	"winningPrinterId": {
+		"$oid": "6a8466fa706371a3f9880d55"
+	},
+	"resultingOrderId": {
+		"$oid": "6a8466fa706371a3f9880d6b"
+	},
+	"createdAt": {
+		"$date": "2026-08-11T14:06:50.524Z"
+	},
+	"updatedAt": {
+		"$date": "2026-08-11T14:06:50.524Z"
+	}
+}]
+

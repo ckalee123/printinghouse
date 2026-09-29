@@ -1,0 +1,86 @@
+<div class="ph-card mx-auto" style="max-width: 560px;">
+  <h1 class="ph-page-title">Registracija klijenta</h1>
+
+  <form (ngSubmit)="submit()" #form="ngForm">
+    <div class="mb-3">
+      <label class="form-label">Korisničko ime *</label>
+      <input type="text" class="form-control" name="username" [(ngModel)]="username" required />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Lozinka *</label>
+      <input type="password" class="form-control" name="password" [(ngModel)]="password" required />
+      <div class="form-text">{{ passwordHint }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Ime *</label>
+        <input type="text" class="form-control" name="firstName" [(ngModel)]="firstName" required />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Prezime *</label>
+        <input type="text" class="form-control" name="lastName" [(ngModel)]="lastName" required />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Kontakt telefon *</label>
+        <input type="tel" class="form-control" name="phone" [(ngModel)]="phone" required />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">E-mejl adresa *</label>
+        <input type="email" class="form-control" name="email" [(ngModel)]="email" required />
+      </div>
+    </div>
+
+    <div class="form-check mb-3">
+      <input type="checkbox" class="form-check-input" id="isCompany" name="isCompany" [(ngModel)]="isCompany" />
+      <label class="form-check-label" for="isCompany">Registrujem se kao pravno lice</label>
+    </div>
+
+    @if (isCompany) {
+      <div class="mb-3">
+        <label class="form-label">Naziv institucije *</label>
+        <input type="text" class="form-control" name="companyName" [(ngModel)]="companyName" [required]="isCompany" />
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Adresa sedišta *</label>
+          <input type="text" class="form-control" name="address" [(ngModel)]="address" [required]="isCompany" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Grad *</label>
+          <input type="text" class="form-control" name="city" [(ngModel)]="city" [required]="isCompany" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Matični broj (8 cifara) *</label>
+          <input type="text" class="form-control" name="registrationNumber" [(ngModel)]="registrationNumber" [required]="isCompany" maxlength="8" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">PIB (9 cifara) *</label>
+          <input type="text" class="form-control" name="pib" [(ngModel)]="pib" [required]="isCompany" maxlength="9" />
+        </div>
+      </div>
+      <p class="ph-muted" style="font-size:0.85rem;">Ime i prezime uneti gore odnose se na odgovorno lice institucije.</p>
+    }
+
+    <div class="mb-3">
+      <label class="form-label">Profilna slika (JPG/PNG/GIF, 100x100 do 250x250 px)</label>
+      <input type="file" class="form-control" accept="image/jpeg,image/png,image/gif" (change)="onFileSelected($event)" />
+    </div>
+
+    @if (errorMessage) {
+      <p class="ph-error-text">{{ errorMessage }}</p>
+    }
+    @if (successMessage) {
+      <p class="text-success">{{ successMessage }}</p>
+    }
+
+    <button type="submit" class="btn ph-btn-primary w-100" [disabled]="!form.valid || loading">
+      {{ loading ? "Slanje..." : "Registruj se" }}
+    </button>
+  </form>
+
+  <p class="mt-3"><a routerLink="/login">Već imate nalog? Prijavite se</a></p>
+</div>

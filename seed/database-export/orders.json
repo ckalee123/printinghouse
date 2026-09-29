@@ -1,0 +1,202 @@
+[{
+	"_id": {
+		"$oid": "6a8466fa706371a3f9880d67"
+	},
+	"clientId": {
+		"$oid": "6a8466fa706371a3f9880d58"
+	},
+	"printerId": {
+		"$oid": "6a8466fa706371a3f9880d55"
+	},
+	"nazivStamparije": "Copy Studio Kumanovska",
+	"grad": "Beograd",
+	"items": [
+		{
+			"productId": {
+				"$oid": "6a8466fa706371a3f9880d5d"
+			},
+			"naziv": "Pamučna Polo Majica",
+			"kolicina": 2,
+			"boja": "Crna",
+			"usluge": [
+				{
+					"idUsluge": "USL-01",
+					"tipStampe": "Direktna štampa na tekstil (DTG)",
+					"dodatnaCenaPoKomadu": 350
+				}
+			],
+			"customization": {
+				"type": "text",
+				"value": "Tim Alfa"
+			},
+			"cenaPoKomadu": 1550,
+			"ukupno": 3100
+		}
+	],
+	"ukupanIznos": 3100,
+	"status": "primljeno",
+	"procurementId": null,
+	"createdAt": {
+		"$date": "2026-07-29T14:06:50.508Z"
+	},
+	"updatedAt": {
+		"$date": "2026-07-31T14:06:50.508Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a8466fa706371a3f9880d68"
+	},
+	"clientId": {
+		"$oid": "6a8466fa706371a3f9880d59"
+	},
+	"printerId": {
+		"$oid": "6a8466fa706371a3f9880d55"
+	},
+	"nazivStamparije": "Copy Studio Kumanovska",
+	"grad": "Beograd",
+	"items": [
+		{
+			"productId": {
+				"$oid": "6a8466fa706371a3f9880d5e"
+			},
+			"naziv": "Keramička šolja 330ml",
+			"kolicina": 5,
+			"boja": "Bela",
+			"usluge": [],
+			"customization": {
+				"type": null,
+				"value": null
+			},
+			"cenaPoKomadu": 320,
+			"ukupno": 1600
+		}
+	],
+	"ukupanIznos": 1600,
+	"status": "isporuceno",
+	"procurementId": null,
+	"createdAt": {
+		"$date": "2026-08-08T14:06:50.52Z"
+	},
+	"updatedAt": {
+		"$date": "2026-08-10T14:06:50.52Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a8466fa706371a3f9880d69"
+	},
+	"clientId": {
+		"$oid": "6a8466fa706371a3f9880d58"
+	},
+	"printerId": {
+		"$oid": "6a8466fa706371a3f9880d56"
+	},
+	"nazivStamparije": "PrintMax Novi Sad",
+	"grad": "Novi Sad",
+	"items": [
+		{
+			"productId": {
+				"$oid": "6a8466fa706371a3f9880d60"
+			},
+			"naziv": "Promotivni Roll-up Baner 85x200cm",
+			"kolicina": 1,
+			"boja": "Bela",
+			"usluge": [],
+			"customization": {
+				"type": null,
+				"value": null
+			},
+			"cenaPoKomadu": 4500,
+			"ukupno": 4500
+		}
+	],
+	"ukupanIznos": 4500,
+	"status": "u_stampi",
+	"procurementId": null,
+	"createdAt": {
+		"$date": "2026-08-14T14:06:50.521Z"
+	},
+	"updatedAt": {
+		"$date": "2026-08-15T14:06:50.521Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a8466fa706371a3f9880d6a"
+	},
+	"clientId": {
+		"$oid": "6a8466fa706371a3f9880d59"
+	},
+	"printerId": {
+		"$oid": "6a8466fa706371a3f9880d57"
+	},
+	"nazivStamparije": "Grafika Plus",
+	"grad": "Niš",
+	"items": [
+		{
+			"productId": {
+				"$oid": "6a8466fa706371a3f9880d62"
+			},
+			"naziv": "Duks sa kapuljačom",
+			"kolicina": 3,
+			"boja": "Siva",
+			"usluge": [],
+			"customization": {
+				"type": null,
+				"value": null
+			},
+			"cenaPoKomadu": 2400,
+			"ukupno": 7200
+		}
+	],
+	"ukupanIznos": 7200,
+	"status": "naruceno",
+	"procurementId": null,
+	"createdAt": {
+		"$date": "2026-08-17T14:06:50.522Z"
+	},
+	"updatedAt": {
+		"$date": "2026-08-17T14:06:50.522Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a8466fa706371a3f9880d6b"
+	},
+	"clientId": {
+		"$oid": "6a8466fa706371a3f9880d5a"
+	},
+	"printerId": {
+		"$oid": "6a8466fa706371a3f9880d55"
+	},
+	"nazivStamparije": "Copy Studio Kumanovska",
+	"grad": "Beograd",
+	"items": [
+		{
+			"productId": {
+				"$oid": "6a8466fa706371a3f9880d5f"
+			},
+			"naziv": "Vizit karta 300g mat",
+			"kolicina": 500,
+			"boja": null,
+			"usluge": [],
+			"customization": {
+				"type": null,
+				"value": null
+			},
+			"cenaPoKomadu": 9,
+			"ukupno": 4500
+		}
+	],
+	"ukupanIznos": 4500,
+	"status": "u_stampi",
+	"procurementId": null,
+	"createdAt": {
+		"$date": "2026-08-11T14:06:50.523Z"
+	},
+	"updatedAt": {
+		"$date": "2026-08-11T14:06:50.523Z"
+	}
+}]
+

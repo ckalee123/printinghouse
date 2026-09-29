@@ -1,0 +1,49 @@
+<h1 class="ph-page-title">Arhiva proizvoda</h1>
+
+@if (!rows.length) {
+  <p class="ph-empty-state">Nemate isporučenih ili primljenih proizvoda.</p>
+} @else {
+  <div class="table-responsive">
+    <table class="table ph-table align-middle">
+      <thead>
+        <tr>
+          <th class="sortable" (click)="sortBy('createdAt')">Datum</th>
+          <th class="sortable" (click)="sortBy('naziv')">Proizvod</th>
+          <th class="sortable" (click)="sortBy('kolicina')">Količina</th>
+          <th class="sortable" (click)="sortBy('nazivStamparije')">Štamparija</th>
+          <th>Status</th>
+          <th>Ocena i komentar</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of sortedRows; track row.orderId + row.productId) {
+          <tr>
+            <td>{{ row.createdAt | date: 'dd.MM.yyyy' }}</td>
+            <td><a [routerLink]="['/proizvod', row.productId]">{{ row.naziv }}</a></td>
+            <td>{{ row.kolicina }}</td>
+            <td>{{ row.nazivStamparije }}</td>
+            <td>
+              <span class="ph-badge-status" [class]="'ph-badge-' + row.status">{{ row.status }}</span>
+              @if (row.status === 'isporuceno') {
+                <button type="button" class="btn ph-btn-accent btn-sm ms-2" (click)="markReceived(row)">Označi kao primljeno</button>
+              }
+            </td>
+            <td>
+              <div class="d-flex gap-1 mb-1">
+                <button type="button" class="btn btn-outline-success btn-sm" (click)="like(row)">👍</button>
+                <button type="button" class="btn btn-outline-danger btn-sm" (click)="dislike(row)">👎</button>
+              </div>
+              <div class="input-group input-group-sm">
+                <input type="text" class="form-control" placeholder="Komentar..." [(ngModel)]="commentDrafts[row.orderId + row.productId]" />
+                <button type="button" class="btn btn-outline-secondary" (click)="submitComment(row)">Pošalji</button>
+              </div>
+              @if (feedback[row.orderId + row.productId]) {
+                <small class="text-success">{{ feedback[row.orderId + row.productId] }}</small>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

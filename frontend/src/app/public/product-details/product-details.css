@@ -1,0 +1,3 @@
+img[style*="cursor:pointer"].border-primary {
+  outline: 3px solid var(--ph-accent);
+}

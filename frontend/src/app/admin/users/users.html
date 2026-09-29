@@ -1,0 +1,73 @@
+<h1 class="ph-page-title">Upravljanje korisnicima</h1>
+
+<div class="ph-card">
+  <form (ngSubmit)="load()" class="row g-2 align-items-end">
+    <div class="col-md-6">
+      <label class="form-label">Pretraga (korisničko ime, ime, e-mejl)</label>
+      <input type="text" class="form-control" [(ngModel)]="search" name="search" />
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Tip korisnika</label>
+      <select class="form-select" [(ngModel)]="roleFilter" name="roleFilter">
+        <option value="">Svi</option>
+        <option value="client">Klijenti</option>
+        <option value="printer">Štamparije</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn ph-btn-primary w-100">Pretraži</button>
+    </div>
+  </form>
+</div>
+
+@if (loading) {
+  <p class="ph-muted">Učitavanje...</p>
+} @else if (!users.length) {
+  <p class="ph-empty-state">Nema korisnika za zadate filtere.</p>
+} @else {
+  <div class="table-responsive">
+    <table class="table ph-table align-middle">
+      <thead>
+        <tr>
+          <th>Korisničko ime</th>
+          <th>Tip</th>
+          <th>Ime i prezime</th>
+          <th>E-mejl</th>
+          <th>Telefon</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (u of users; track u.id) {
+          <tr>
+            <td>{{ u.username }}</td>
+            <td>{{ u.role }}</td>
+            @if (editingId === u.id) {
+              <td>
+                <input type="text" class="form-control form-control-sm mb-1" [(ngModel)]="editDraft.firstName" name="fn" />
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="editDraft.lastName" name="ln" />
+              </td>
+              <td><input type="email" class="form-control form-control-sm" [(ngModel)]="editDraft.email" name="em" /></td>
+              <td><input type="text" class="form-control form-control-sm" [(ngModel)]="editDraft.phone" name="ph" /></td>
+              <td>{{ u.status }}</td>
+              <td>
+                <button type="button" class="btn ph-btn-primary btn-sm" (click)="saveEdit(u)">Sačuvaj</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" (click)="cancelEdit()">Otkaži</button>
+              </td>
+            } @else {
+              <td>{{ u.firstName }} {{ u.lastName }}</td>
+              <td>{{ u.email }}</td>
+              <td>{{ u.phone }}</td>
+              <td>{{ u.status }}</td>
+              <td>
+                <button type="button" class="btn btn-outline-secondary btn-sm" (click)="startEdit(u)">Izmeni</button>
+                <button type="button" class="btn btn-outline-danger btn-sm" (click)="remove(u)">Obriši</button>
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

@@ -1,0 +1,55 @@
+<h1 class="ph-page-title">Pretraga proizvoda</h1>
+
+<div class="ph-card">
+  <form (ngSubmit)="runSearch()" class="row g-2 align-items-end">
+    <div class="col-md-6">
+      <label class="form-label">Naziv proizvoda</label>
+      <input type="text" class="form-control" name="q" [(ngModel)]="searchTerm" />
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Kategorija</label>
+      <select class="form-select" name="category" [(ngModel)]="selectedCategory">
+        <option>Sve kategorije</option>
+        @for (c of categories; track c._id) {
+          <option [value]="c.name">{{ c.name }}</option>
+        }
+      </select>
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn ph-btn-primary w-100">Pretraži</button>
+    </div>
+  </form>
+</div>
+
+@if (loading) {
+  <p class="ph-muted">Učitavanje...</p>
+} @else if (!results.length) {
+  <p class="ph-empty-state">Nema rezultata za zadatu pretragu.</p>
+} @else {
+  <div class="table-responsive">
+    <table class="table ph-table align-middle">
+      <thead>
+        <tr>
+          <th class="sortable" (click)="toggleSortByName()">Naziv proizvoda</th>
+          <th>Kategorija</th>
+          <th>Štamparija</th>
+          <th>Grad</th>
+          <th>Ocene</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (p of results; track p.id) {
+          <tr>
+            <td>{{ p.naziv }}</td>
+            <td>{{ p.kategorija }}</td>
+            <td>{{ p.nazivStamparije }}</td>
+            <td>{{ p.grad }}</td>
+            <td>👍 {{ p.likeCount }} &nbsp; 👎 {{ p.dislikeCount }}</td>
+            <td><a [routerLink]="['/proizvod', p.id]" class="btn ph-btn-accent btn-sm">DETALJI</a></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

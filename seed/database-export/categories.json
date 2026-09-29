@@ -1,0 +1,121 @@
+[{
+	"_id": {
+		"$oid": "6a8466fa706371a3f9880d51"
+	},
+	"name": "Štampa malih formata",
+	"subcategories": [
+		{
+			"_id": {
+				"$oid": "6a8466fa706371a3f9880d44"
+			},
+			"name": "Olovke"
+		},
+		{
+			"_id": {
+				"$oid": "6a8466fa706371a3f9880d45"
+			},
+			"name": "Vizit karte"
+		},
+		{
+			"_id": {
+				"$oid": "6a8466fa706371a3f9880d46"
+			},
+			"name": "Flajeri"
+		},
+		{
+			"_id": {
+				"$oid": "6a8466fa706371a3f9880d47"
+			},
+			"name": "Zahvalnice"
+		},
+		{
+			"_id": {
+				"$oid": "6a8466fa706371a3f9880d48"
+			},
+			"name": "Pozivnice"
+		},
+		{
+			"_id": {
+				"$oid": "6a8466fa706371a3f9880d49"
+			},
+			"name": "Fascikle"
+		}
+	],
+	"createdAt": {
+		"$date": "2026-08-18T14:06:50.435Z"
+	},
+	"updatedAt": {
+		"$date": "2026-08-18T14:06:50.435Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a8466fa706371a3f9880d52"
+	},
+	"name": "Štampa velikih formata",
+	"subcategories": [
+		{
+			"_id": {
+				"$oid": "6a8466fa706371a3f9880d4a"
+			},
+			"name": "Posteri"
+		},
+		{
+			"_id": {
+				"$oid": "6a8466fa706371a3f9880d4b"
+			},
+			"name": "Rollups"
+		},
+		{
+			"_id": {
+				"$oid": "6a8466fa706371a3f9880d4c"
+			},
+			"name": "Fototapete"
+		}
+	],
+	"createdAt": {
+		"$date": "2026-08-18T14:06:50.435Z"
+	},
+	"updatedAt": {
+		"$date": "2026-08-18T14:06:50.435Z"
+	}
+},
+{
+	"_id": {
+		"$oid": "6a8466fa706371a3f9880d53"
+	},
+	"name": "Kreativne štampe",
+	"subcategories": [
+		{
+			"_id": {
+				"$oid": "6a8466fa706371a3f9880d4d"
+			},
+			"name": "Šolje"
+		},
+		{
+			"_id": {
+				"$oid": "6a8466fa706371a3f9880d4e"
+			},
+			"name": "Štampa na majicama"
+		},
+		{
+			"_id": {
+				"$oid": "6a8466fa706371a3f9880d4f"
+			},
+			"name": "Štampa na duksevima"
+		},
+		{
+			"_id": {
+				"$oid": "6a8466fa706371a3f9880d50"
+			},
+			"name": "Štampa na cegerima"
+		}
+	],
+	"createdAt": {
+		"$date": "2026-08-18T14:06:50.435Z"
+	},
+	"updatedAt": {
+		"$date": "2026-08-18T14:06:50.435Z"
+	}
+}]
+

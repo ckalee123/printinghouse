@@ -1,0 +1,37 @@
+<h1 class="ph-page-title">Statistike</h1>
+
+<div class="ph-card">
+  <h2 class="h6">Promet štamparija ka klijentima (poslednja 3 meseca)</h2>
+  @if (!barData.labels?.length) {
+    <p class="ph-empty-state">Nema podataka za prikaz.</p>
+  } @else {
+    <div style="height:320px;">
+      <canvas baseChart [data]="barData" [type]="'bar'"></canvas>
+    </div>
+  }
+</div>
+
+<div class="ph-card">
+  <h2 class="h6">Najčešće naručivani proizvodi (poslednji mesec)</h2>
+  @if (!pieData.labels?.length) {
+    <p class="ph-empty-state">Nema podataka za prikaz.</p>
+  } @else {
+    <div style="height:320px; max-width:480px;">
+      <canvas baseChart [data]="pieData" [type]="'pie'"></canvas>
+    </div>
+  }
+</div>
+
+<div class="ph-card">
+  <h2 class="h6">Kretanje ocene proizvoda kroz vreme</h2>
+  <p class="ph-muted" style="font-size:0.85rem;">Kliknite na naziv proizvoda u legendi da ga isključite/uključite iz prikaza.</p>
+  @if (loading) {
+    <p class="ph-muted">Učitavanje...</p>
+  } @else if (!lineData.datasets.length) {
+    <p class="ph-empty-state">Nema podataka za prikaz.</p>
+  } @else {
+    <div style="height:320px;">
+      <canvas baseChart [data]="lineData" [type]="'line'"></canvas>
+    </div>
+  }
+</div>

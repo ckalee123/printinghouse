@@ -1,0 +1,80 @@
+@if (loading) {
+  <p class="ph-muted">Učitavanje...</p>
+} @else if (!product) {
+  <p class="ph-empty-state">Proizvod nije pronađen.</p>
+} @else {
+  <h1 class="ph-page-title">{{ product.naziv }}</h1>
+
+  <div class="row">
+    <div class="col-md-5">
+      <div class="ph-card">
+        <img [src]="'/uploads/' + selectedImage" alt="{{ product.naziv }}" class="w-100 mb-2" style="max-height:320px;object-fit:cover;border-radius:0.4rem;" />
+        @if (galleryImages.length > 1) {
+          <div class="d-flex gap-2 flex-wrap">
+            @for (img of galleryImages; track img) {
+              <img [src]="'/uploads/' + img" (click)="selectImage(img)"
+                   [class.border-primary]="img === selectedImage"
+                   class="border rounded" style="width:64px;height:64px;object-fit:cover;cursor:pointer;" />
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="ph-card">
+        <p><strong>Štamparija:</strong> {{ product.nazivStamparije }}</p>
+        <p><strong>Grad:</strong> {{ product.grad }}</p>
+        <p>👍 {{ product.likeCount }} svidjanja &nbsp; 👎 {{ product.dislikeCount }} nesvidjanja</p>
+
+        @if (auth.role() === 'client') {
+          <div class="d-flex gap-2 mb-2">
+            <button type="button" class="btn btn-outline-success btn-sm" (click)="like()">👍 Svidja mi se</button>
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="dislike()">👎 Ne svidja mi se</button>
+          </div>
+        }
+
+        @if (extended; as ext) {
+          <hr />
+          <p>{{ ext.opis }}</p>
+          <p><strong>Cena po komadu:</strong> {{ ext.jedinicnaCena }} din</p>
+
+          @if (ext.uslugeStampe.length) {
+            <p class="mb-1"><strong>Vrste štampe:</strong></p>
+            <ul>
+              @for (u of ext.uslugeStampe; track u.idUsluge) {
+                <li>{{ u.tipStampe }} (+{{ u.dodatnaCenaPoKomadu }} din, do {{ u.maxSirinaMm }}x{{ u.maxVisinaMm }} mm)</li>
+              }
+            </ul>
+          }
+
+          @if (ext.kolicinaNaLageru > 0) {
+            <a [routerLink]="['/klijent/priprema', ext.id]" class="btn ph-btn-primary">DALJE</a>
+          } @else {
+            <p class="ph-error-text">Trenutno nema na stanju</p>
+          }
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="ph-card">
+    <h2 class="h6">Poslednjih 5 komentara</h2>
+    @if (!comments.length) {
+      <p class="ph-muted">Još uvek nema komentara.</p>
+    }
+    @for (c of comments; track c._id) {
+      <div class="mb-2 p-2" [class.ph-own-comment]="c.userId === auth.user()?.id">
+        <strong>{{ c.username }}</strong> <small class="ph-muted">{{ c.createdAt | date: 'dd.MM.yyyy HH:mm' }}</small>
+        <p class="mb-0">{{ c.text }}</p>
+      </div>
+    }
+
+    @if (auth.role() === 'client') {
+      <div class="input-group mt-2">
+        <input type="text" class="form-control" placeholder="Dodajte komentar..." [(ngModel)]="newComment" name="newComment" />
+        <button type="button" class="btn ph-btn-primary" (click)="addComment()">Pošalji</button>
+      </div>
+    }
+  </div>
+}

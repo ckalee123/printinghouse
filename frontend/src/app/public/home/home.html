@@ -1,0 +1,48 @@
+<h1 class="ph-page-title">Dobrodošli u Printing House</h1>
+
+@if (loading) {
+  <p class="ph-muted">Učitavanje...</p>
+} @else {
+  <div class="ph-card">
+    <p class="mb-0">Trenutno je registrovano <strong>{{ stats?.printerCount }}</strong> štamparija na platformi.</p>
+  </div>
+
+  <div class="ph-card">
+    <h2 class="h5 mb-3">Pretraga proizvoda</h2>
+    <form (ngSubmit)="search()" class="row g-2 align-items-end">
+      <div class="col-md-6">
+        <label class="form-label">Naziv proizvoda</label>
+        <input type="text" class="form-control" name="q" [(ngModel)]="searchTerm" placeholder="npr. Hemijska olovka, Polo majica..." />
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Kategorija</label>
+        <select class="form-select" name="category" [(ngModel)]="selectedCategory">
+          <option>Sve kategorije</option>
+          @for (c of categories; track c._id) {
+            <option [value]="c.name">{{ c.name }}</option>
+          }
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn ph-btn-primary w-100">Pretraži</button>
+      </div>
+    </form>
+  </div>
+
+  <h2 class="h5 mt-4 mb-3">TOP 5 najbolje ocenjenih proizvoda</h2>
+  @if (!stats?.top5?.length) {
+    <p class="ph-empty-state">Trenutno nema dovoljno podataka za TOP listu.</p>
+  } @else {
+    <div class="ph-grid-cards">
+      @for (p of stats!.top5; track p.id) {
+        <div class="ph-card">
+          <img [src]="'/uploads/' + (p.slikaUrl || 'default_profile_image.jpg')" alt="{{ p.naziv }}" class="w-100 mb-2" style="height:140px;object-fit:cover;border-radius:0.4rem;" />
+          <h3 class="h6">{{ p.naziv }}</h3>
+          <p class="ph-muted mb-1" style="font-size:0.85rem;">{{ p.nazivStamparije }} · {{ p.grad }}</p>
+          <p class="mb-2" style="font-size:0.85rem;">👍 {{ p.likeCount }} &nbsp; 👎 {{ p.dislikeCount }}</p>
+          <a [routerLink]="['/proizvod', p.id]" class="btn ph-btn-accent btn-sm w-100">DETALJI</a>
+        </div>
+      }
+    </div>
+  }
+}
